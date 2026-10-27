@@ -13,12 +13,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            900: '#4c1d95',
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
                         },
                         darkbg: '#0b0c10',
                         darkcard: '#161822',
@@ -54,7 +54,7 @@
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #0b0c10; }
         ::-webkit-scrollbar-thumb { background: #2a2d3d; border-radius: 6px; }
-        ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
     </style>
 </head>
 <body class="bg-darkbg text-slate-100 min-h-screen flex antialiased selection:bg-brand-600 selection:text-white leading-relaxed text-sm">
@@ -979,7 +979,7 @@
                 tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-500">لا توجد مرتجعات مسجلة مطابقة للبحث</td></tr>`;
                 return;
             }
-            returns.exports = returns.forEach((r, idx) => {
+            returns.forEach((r, idx) => {
                 const row = document.createElement('tr');
                 row.className = "hover:bg-slate-800/40 transition-colors";
                 row.innerHTML = `
@@ -1123,7 +1123,7 @@
                     datasets: [{
                         label: 'الكمية المتوفرة',
                         data: sorted.map(s => s.qty),
-                        backgroundColor: '#7c3aed',
+                        backgroundColor: '#2563eb',
                         borderRadius: 8
                     }]
                 },
@@ -1234,7 +1234,7 @@
             }
         };
 
-5. window.deleteReturn = async (id) => {
+        window.deleteReturn = async (id) => {
             if (confirm('هل أنت تأكد من مسح سجل المرتجع؟')) {
                 await deleteDoc(doc(db, "returns", id));
                 window.showToast('تم الحذف', 'info');
