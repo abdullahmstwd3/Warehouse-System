@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أدوات المخزون - نظام إدارة المستودع الاحترافي</title>
+    <title>إدارة المخزون - نظام إدارة المستودع الاحترافي</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -69,8 +69,7 @@
                 <i class="fa-solid fa-boxes-stacked text-2xl"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold text-white tracking-wide">أدوات المخزون</h1>
-                <p class="text-xs text-slate-400 font-semibold mt-0.5">إدارة المستودع الذكية</p>
+                <h1 class="text-lg font-bold text-white tracking-wide">إدارة المخزون</h1>
             </div>
         </div>
 
@@ -100,11 +99,6 @@
                 <span>تسوية المخزون</span>
             </button>
         </nav>
-
-        <div class="p-5 border-t border-slate-800/80 text-xs text-slate-400 leading-normal">
-            <p id="userLocationName" class="font-bold text-slate-200 text-sm">المستودع الرئيسي</p>
-            <p id="userKeeperName" class="text-xs text-slate-400 mt-1">أمين المستودع: عبد الله المحمود</p>
-        </div>
     </aside>
 
     <!-- Main Content Area -->
@@ -653,7 +647,6 @@
         let statusPieChartInstance = null;
         let stockBarChartInstance = null;
 
-        // Force English Digits (0-9) Utility across all string & date conversions
         function toEnglishDigits(str) {
             if (str === null || str === undefined) return '';
             return String(str).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
@@ -666,7 +659,7 @@
         function getFormattedCurrentDate() {
             const d = new Date();
             const dateStr = d.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
-            const timeStr = d.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            const timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
             return `${toEnglishDigits(dateStr)} ${toEnglishDigits(timeStr)}`;
         }
 
@@ -986,7 +979,7 @@
                 tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-500">لا توجد مرتجعات مسجلة مطابقة للبحث</td></tr>`;
                 return;
             }
-            returns.forEach((r, idx) => {
+            returns.exports = returns.forEach((r, idx) => {
                 const row = document.createElement('tr');
                 row.className = "hover:bg-slate-800/40 transition-colors";
                 row.innerHTML = `
@@ -1241,7 +1234,7 @@
             }
         };
 
-        window.deleteReturn = async (id) => {
+5. window.deleteReturn = async (id) => {
             if (confirm('هل أنت تأكد من مسح سجل المرتجع؟')) {
                 await deleteDoc(doc(db, "returns", id));
                 window.showToast('تم الحذف', 'info');
